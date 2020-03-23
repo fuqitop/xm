@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.salary_standard_detailsMapper">
+  <resultMap id="BaseResultMap" type="entity.salary_standard_details">
+    <id column="item_id" jdbcType="SMALLINT" property="itemId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="salary" jdbcType="DECIMAL" property="salary" />
+    <result column="standard_id" jdbcType="VARCHAR" property="standardId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, salary, standard_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salary_standard_details
+    where item_id = #{itemId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from salary_standard_details
+    where item_id = #{itemId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.salary_standard_details">
+    insert into salary_standard_details (item_id, item_name, salary, 
+      standard_id)
+    values (#{itemId,jdbcType=SMALLINT}, #{itemName,jdbcType=VARCHAR}, #{salary,jdbcType=DECIMAL}, 
+      #{standardId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.salary_standard_details">
+    insert into salary_standard_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="standardId != null">
+        standard_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=SMALLINT},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="standardId != null">
+        #{standardId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.salary_standard_details">
+    update salary_standard_details
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="standardId != null">
+        standard_id = #{standardId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.salary_standard_details">
+    update salary_standard_details
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=DECIMAL},
+      standard_id = #{standardId,jdbcType=VARCHAR}
+    where item_id = #{itemId,jdbcType=SMALLINT}
+  </update>
+</mapper>

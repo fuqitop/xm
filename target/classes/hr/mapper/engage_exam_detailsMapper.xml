@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.engage_exam_detailsMapper">
+  <resultMap id="BaseResultMap" type="entity.engage_exam_details">
+    <id column="exd_id" jdbcType="SMALLINT" property="exdId" />
+    <result column="exam_number" jdbcType="VARCHAR" property="examNumber" />
+    <result column="second_kind_id" jdbcType="SMALLINT" property="secondKindId" />
+    <result column="question_amount" jdbcType="SMALLINT" property="questionAmount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exd_id, exam_number, second_kind_id, question_amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engage_exam_details
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from engage_exam_details
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.engage_exam_details">
+    insert into engage_exam_details (exd_id, exam_number, second_kind_id, 
+      question_amount)
+    values (#{exdId,jdbcType=SMALLINT}, #{examNumber,jdbcType=VARCHAR}, #{secondKindId,jdbcType=SMALLINT}, 
+      #{questionAmount,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.engage_exam_details">
+    insert into engage_exam_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="exdId != null">
+        exd_id,
+      </if>
+      <if test="examNumber != null">
+        exam_number,
+      </if>
+      <if test="secondKindId != null">
+        second_kind_id,
+      </if>
+      <if test="questionAmount != null">
+        question_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="exdId != null">
+        #{exdId,jdbcType=SMALLINT},
+      </if>
+      <if test="examNumber != null">
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="secondKindId != null">
+        #{secondKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="questionAmount != null">
+        #{questionAmount,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.engage_exam_details">
+    update engage_exam_details
+    <set>
+      <if test="examNumber != null">
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="secondKindId != null">
+        second_kind_id = #{secondKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="questionAmount != null">
+        question_amount = #{questionAmount,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.engage_exam_details">
+    update engage_exam_details
+    set exam_number = #{examNumber,jdbcType=VARCHAR},
+      second_kind_id = #{secondKindId,jdbcType=SMALLINT},
+      question_amount = #{questionAmount,jdbcType=SMALLINT}
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </update>
+</mapper>

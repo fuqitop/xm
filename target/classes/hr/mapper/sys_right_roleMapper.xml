@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.sys_right_roleMapper">
+  <resultMap id="BaseResultMap" type="entity.sys_right_roleKey">
+    <id column="right_id" jdbcType="INTEGER" property="rightId" />
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="entity.sys_right_roleKey">
+    delete from sys_right_role
+    where right_id = #{rightId,jdbcType=INTEGER}
+      and role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="entity.sys_right_roleKey">
+    insert into sys_right_role (right_id, role_id)
+    values (#{rightId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.sys_right_roleKey">
+    insert into sys_right_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rightId != null">
+        right_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rightId != null">
+        #{rightId,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

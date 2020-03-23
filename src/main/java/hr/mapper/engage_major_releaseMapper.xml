@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.engage_major_releaseMapper">
+  <resultMap id="BaseResultMap" type="entity.engage_major_release">
+    <id column="mre_id" jdbcType="SMALLINT" property="mreId" />
+    <result column="third_kind_id" jdbcType="SMALLINT" property="thirdKindId" />
+    <result column="major_id" jdbcType="SMALLINT" property="majorId" />
+    <result column="human_amount" jdbcType="SMALLINT" property="humanAmount" />
+    <result column="engage_type" jdbcType="VARCHAR" property="engageType" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="register" jdbcType="VARCHAR" property="register" />
+    <result column="changer" jdbcType="VARCHAR" property="changer" />
+    <result column="regist_time" jdbcType="TIMESTAMP" property="registTime" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="entity.engage_major_releaseWithBLOBs">
+    <result column="major_describe" jdbcType="LONGVARCHAR" property="majorDescribe" />
+    <result column="engage_required" jdbcType="LONGVARCHAR" property="engageRequired" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mre_id, third_kind_id, major_id, human_amount, engage_type, deadline, register, changer, 
+    regist_time, change_time
+  </sql>
+  <sql id="Blob_Column_List">
+    major_describe, engage_required
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from engage_major_release
+    where mre_id = #{mreId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from engage_major_release
+    where mre_id = #{mreId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.engage_major_releaseWithBLOBs">
+    insert into engage_major_release (mre_id, third_kind_id, major_id, 
+      human_amount, engage_type, deadline, 
+      register, changer, regist_time, 
+      change_time, major_describe, engage_required
+      )
+    values (#{mreId,jdbcType=SMALLINT}, #{thirdKindId,jdbcType=SMALLINT}, #{majorId,jdbcType=SMALLINT}, 
+      #{humanAmount,jdbcType=SMALLINT}, #{engageType,jdbcType=VARCHAR}, #{deadline,jdbcType=TIMESTAMP}, 
+      #{register,jdbcType=VARCHAR}, #{changer,jdbcType=VARCHAR}, #{registTime,jdbcType=TIMESTAMP}, 
+      #{changeTime,jdbcType=TIMESTAMP}, #{majorDescribe,jdbcType=LONGVARCHAR}, #{engageRequired,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="entity.engage_major_releaseWithBLOBs">
+    insert into engage_major_release
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mreId != null">
+        mre_id,
+      </if>
+      <if test="thirdKindId != null">
+        third_kind_id,
+      </if>
+      <if test="majorId != null">
+        major_id,
+      </if>
+      <if test="humanAmount != null">
+        human_amount,
+      </if>
+      <if test="engageType != null">
+        engage_type,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="register != null">
+        register,
+      </if>
+      <if test="changer != null">
+        changer,
+      </if>
+      <if test="registTime != null">
+        regist_time,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="majorDescribe != null">
+        major_describe,
+      </if>
+      <if test="engageRequired != null">
+        engage_required,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mreId != null">
+        #{mreId,jdbcType=SMALLINT},
+      </if>
+      <if test="thirdKindId != null">
+        #{thirdKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorId != null">
+        #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="humanAmount != null">
+        #{humanAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="engageType != null">
+        #{engageType,jdbcType=VARCHAR},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="register != null">
+        #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="changer != null">
+        #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null">
+        #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="majorDescribe != null">
+        #{majorDescribe,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="engageRequired != null">
+        #{engageRequired,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.engage_major_releaseWithBLOBs">
+    update engage_major_release
+    <set>
+      <if test="thirdKindId != null">
+        third_kind_id = #{thirdKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorId != null">
+        major_id = #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="humanAmount != null">
+        human_amount = #{humanAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="engageType != null">
+        engage_type = #{engageType,jdbcType=VARCHAR},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="register != null">
+        register = #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="changer != null">
+        changer = #{changer,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null">
+        regist_time = #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="majorDescribe != null">
+        major_describe = #{majorDescribe,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="engageRequired != null">
+        engage_required = #{engageRequired,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where mre_id = #{mreId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="entity.engage_major_releaseWithBLOBs">
+    update engage_major_release
+    set third_kind_id = #{thirdKindId,jdbcType=SMALLINT},
+      major_id = #{majorId,jdbcType=SMALLINT},
+      human_amount = #{humanAmount,jdbcType=SMALLINT},
+      engage_type = #{engageType,jdbcType=VARCHAR},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      register = #{register,jdbcType=VARCHAR},
+      changer = #{changer,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      major_describe = #{majorDescribe,jdbcType=LONGVARCHAR},
+      engage_required = #{engageRequired,jdbcType=LONGVARCHAR}
+    where mre_id = #{mreId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.engage_major_release">
+    update engage_major_release
+    set third_kind_id = #{thirdKindId,jdbcType=SMALLINT},
+      major_id = #{majorId,jdbcType=SMALLINT},
+      human_amount = #{humanAmount,jdbcType=SMALLINT},
+      engage_type = #{engageType,jdbcType=VARCHAR},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      register = #{register,jdbcType=VARCHAR},
+      changer = #{changer,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where mre_id = #{mreId,jdbcType=SMALLINT}
+  </update>
+</mapper>

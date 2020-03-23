@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.engage_answer_detailsMapper">
+  <resultMap id="BaseResultMap" type="entity.engage_answer_details">
+    <id column="and_id" jdbcType="SMALLINT" property="andId" />
+    <result column="ans_id" jdbcType="SMALLINT" property="ansId" />
+    <result column="subject_id" jdbcType="SMALLINT" property="subjectId" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    and_id, ans_id, subject_id, answer
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engage_answer_details
+    where and_id = #{andId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from engage_answer_details
+    where and_id = #{andId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.engage_answer_details">
+    insert into engage_answer_details (and_id, ans_id, subject_id, 
+      answer)
+    values (#{andId,jdbcType=SMALLINT}, #{ansId,jdbcType=SMALLINT}, #{subjectId,jdbcType=SMALLINT}, 
+      #{answer,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.engage_answer_details">
+    insert into engage_answer_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="andId != null">
+        and_id,
+      </if>
+      <if test="ansId != null">
+        ans_id,
+      </if>
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="andId != null">
+        #{andId,jdbcType=SMALLINT},
+      </if>
+      <if test="ansId != null">
+        #{ansId,jdbcType=SMALLINT},
+      </if>
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=SMALLINT},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.engage_answer_details">
+    update engage_answer_details
+    <set>
+      <if test="ansId != null">
+        ans_id = #{ansId,jdbcType=SMALLINT},
+      </if>
+      <if test="subjectId != null">
+        subject_id = #{subjectId,jdbcType=SMALLINT},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where and_id = #{andId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.engage_answer_details">
+    update engage_answer_details
+    set ans_id = #{ansId,jdbcType=SMALLINT},
+      subject_id = #{subjectId,jdbcType=SMALLINT},
+      answer = #{answer,jdbcType=VARCHAR}
+    where and_id = #{andId,jdbcType=SMALLINT}
+  </update>
+</mapper>

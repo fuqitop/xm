@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.engage_answerMapper">
+  <resultMap id="BaseResultMap" type="entity.engage_answer">
+    <id column="ans_id" jdbcType="SMALLINT" property="ansId" />
+    <result column="exam_number" jdbcType="VARCHAR" property="examNumber" />
+    <result column="resume_id" jdbcType="SMALLINT" property="resumeId" />
+    <result column="human_name" jdbcType="VARCHAR" property="humanName" />
+    <result column="human_idcard" jdbcType="VARCHAR" property="humanIdcard" />
+    <result column="major_id" jdbcType="SMALLINT" property="majorId" />
+    <result column="test_time" jdbcType="TIMESTAMP" property="testTime" />
+    <result column="use_time" jdbcType="INTEGER" property="useTime" />
+    <result column="total_point" jdbcType="DECIMAL" property="totalPoint" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ans_id, exam_number, resume_id, human_name, human_idcard, major_id, test_time, use_time, 
+    total_point
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engage_answer
+    where ans_id = #{ansId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from engage_answer
+    where ans_id = #{ansId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.engage_answer">
+    insert into engage_answer (ans_id, exam_number, resume_id, 
+      human_name, human_idcard, major_id, 
+      test_time, use_time, total_point
+      )
+    values (#{ansId,jdbcType=SMALLINT}, #{examNumber,jdbcType=VARCHAR}, #{resumeId,jdbcType=SMALLINT}, 
+      #{humanName,jdbcType=VARCHAR}, #{humanIdcard,jdbcType=VARCHAR}, #{majorId,jdbcType=SMALLINT}, 
+      #{testTime,jdbcType=TIMESTAMP}, #{useTime,jdbcType=INTEGER}, #{totalPoint,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="entity.engage_answer">
+    insert into engage_answer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ansId != null">
+        ans_id,
+      </if>
+      <if test="examNumber != null">
+        exam_number,
+      </if>
+      <if test="resumeId != null">
+        resume_id,
+      </if>
+      <if test="humanName != null">
+        human_name,
+      </if>
+      <if test="humanIdcard != null">
+        human_idcard,
+      </if>
+      <if test="majorId != null">
+        major_id,
+      </if>
+      <if test="testTime != null">
+        test_time,
+      </if>
+      <if test="useTime != null">
+        use_time,
+      </if>
+      <if test="totalPoint != null">
+        total_point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ansId != null">
+        #{ansId,jdbcType=SMALLINT},
+      </if>
+      <if test="examNumber != null">
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeId != null">
+        #{resumeId,jdbcType=SMALLINT},
+      </if>
+      <if test="humanName != null">
+        #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanIdcard != null">
+        #{humanIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null">
+        #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="testTime != null">
+        #{testTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null">
+        #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        #{totalPoint,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.engage_answer">
+    update engage_answer
+    <set>
+      <if test="examNumber != null">
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeId != null">
+        resume_id = #{resumeId,jdbcType=SMALLINT},
+      </if>
+      <if test="humanName != null">
+        human_name = #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanIdcard != null">
+        human_idcard = #{humanIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null">
+        major_id = #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="testTime != null">
+        test_time = #{testTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null">
+        use_time = #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        total_point = #{totalPoint,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ans_id = #{ansId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.engage_answer">
+    update engage_answer
+    set exam_number = #{examNumber,jdbcType=VARCHAR},
+      resume_id = #{resumeId,jdbcType=SMALLINT},
+      human_name = #{humanName,jdbcType=VARCHAR},
+      human_idcard = #{humanIdcard,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=SMALLINT},
+      test_time = #{testTime,jdbcType=TIMESTAMP},
+      use_time = #{useTime,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=DECIMAL}
+    where ans_id = #{ansId,jdbcType=SMALLINT}
+  </update>
+</mapper>

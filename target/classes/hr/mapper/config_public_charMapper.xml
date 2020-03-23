@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.config_public_charMapper">
+  <resultMap id="BaseResultMap" type="entity.config_public_char">
+    <id column="pbc_id" jdbcType="INTEGER" property="pbcId" />
+    <result column="attribute_kind" jdbcType="VARCHAR" property="attributeKind" />
+    <result column="attribute_name" jdbcType="VARCHAR" property="attributeName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pbc_id, attribute_kind, attribute_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config_public_char
+    where pbc_id = #{pbcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from config_public_char
+    where pbc_id = #{pbcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="entity.config_public_char">
+    insert into config_public_char (pbc_id, attribute_kind, attribute_name
+      )
+    values (#{pbcId,jdbcType=INTEGER}, #{attributeKind,jdbcType=VARCHAR}, #{attributeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="entity.config_public_char">
+    insert into config_public_char
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pbcId != null">
+        pbc_id,
+      </if>
+      <if test="attributeKind != null">
+        attribute_kind,
+      </if>
+      <if test="attributeName != null">
+        attribute_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pbcId != null">
+        #{pbcId,jdbcType=INTEGER},
+      </if>
+      <if test="attributeKind != null">
+        #{attributeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeName != null">
+        #{attributeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.config_public_char">
+    update config_public_char
+    <set>
+      <if test="attributeKind != null">
+        attribute_kind = #{attributeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeName != null">
+        attribute_name = #{attributeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pbc_id = #{pbcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.config_public_char">
+    update config_public_char
+    set attribute_kind = #{attributeKind,jdbcType=VARCHAR},
+      attribute_name = #{attributeName,jdbcType=VARCHAR}
+    where pbc_id = #{pbcId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.config_question_second_kindMapper">
+  <resultMap id="BaseResultMap" type="entity.config_question_second_kind">
+    <id column="second_kind_id" jdbcType="SMALLINT" property="secondKindId" />
+    <result column="second_kind_name" jdbcType="VARCHAR" property="secondKindName" />
+    <result column="first_kind_id" jdbcType="SMALLINT" property="firstKindId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    second_kind_id, second_kind_name, first_kind_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config_question_second_kind
+    where second_kind_id = #{secondKindId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from config_question_second_kind
+    where second_kind_id = #{secondKindId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="entity.config_question_second_kind">
+    insert into config_question_second_kind (second_kind_id, second_kind_name, first_kind_id
+      )
+    values (#{secondKindId,jdbcType=SMALLINT}, #{secondKindName,jdbcType=VARCHAR}, #{firstKindId,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="entity.config_question_second_kind">
+    insert into config_question_second_kind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="secondKindId != null">
+        second_kind_id,
+      </if>
+      <if test="secondKindName != null">
+        second_kind_name,
+      </if>
+      <if test="firstKindId != null">
+        first_kind_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="secondKindId != null">
+        #{secondKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="secondKindName != null">
+        #{secondKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstKindId != null">
+        #{firstKindId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.config_question_second_kind">
+    update config_question_second_kind
+    <set>
+      <if test="secondKindName != null">
+        second_kind_name = #{secondKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstKindId != null">
+        first_kind_id = #{firstKindId,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where second_kind_id = #{secondKindId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.config_question_second_kind">
+    update config_question_second_kind
+    set second_kind_name = #{secondKindName,jdbcType=VARCHAR},
+      first_kind_id = #{firstKindId,jdbcType=SMALLINT}
+    where second_kind_id = #{secondKindId,jdbcType=SMALLINT}
+  </update>
+</mapper>
